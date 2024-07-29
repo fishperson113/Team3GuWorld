@@ -5,12 +5,13 @@ using UnityEngine;
 public class SkillPool : ScriptableObject
 {
     [SerializeField] private List<Skill> skills = new List<Skill>();
+    [SerializeField] private SkillEventChannel skillEventChannel; // Thêm skillEventChannel
 
     private ISkillVisitor skillVisitor;
 
     private void OnEnable()
     {
-        skillVisitor = new SkillEffect();
+        skillVisitor = new SkillEffect(skillEventChannel);
     }
     public void ActivateSkill(int index)
     {

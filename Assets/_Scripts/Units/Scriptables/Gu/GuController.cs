@@ -4,10 +4,10 @@ using UnityEngine;
 public class GuController : MonoBehaviour
 {
     public IGu gu { get; set; }
-
-    public void ActivateSkill(int index, ISkillVisitor visitor)
+    public SkillEventChannel skillEventChannel;
+    public void ActivateSkill(int index)
     {
-        gu.ActivateSkill(index, visitor);
+        gu.ActivateSkill(index, new SkillEffect(skillEventChannel));
     }
 
     public List<Skill> GetSkills()
