@@ -1,33 +1,19 @@
-﻿using UnityEngine;
+﻿using UnityEditor.Experimental.GraphView;
+using UnityEngine;
 
 public class SkillTester : MonoBehaviour
 {
     public GuController guController;
-    private void Update()
+
+    public void UseSkill(Skill skill)
     {
-        if (guController != null && guController.gu != null)
+        if (skill == null)
         {
-            if (Input.GetKeyDown(KeyCode.Z))
-            {
-                ActivateSkill(0);
-            }
-            if (Input.GetKeyDown(KeyCode.X))
-            {
-                ActivateSkill(1);
-            }
-            if (Input.GetKeyDown(KeyCode.C))
-            {
-                ActivateSkill(2);
-            }
-            if (Input.GetKeyDown(KeyCode.V))
-            {
-                ActivateSkill(3);
-            }
+            Debug.LogWarning("Skill is null");
+            return;
         }
 
-    }
-    private void ActivateSkill(int index)
-    {
-        guController.ActivateSkill(index);
+        var skillEffect = new SkillEffect();
+        skillEffect.ExecuteSkill(skill);
     }
 }

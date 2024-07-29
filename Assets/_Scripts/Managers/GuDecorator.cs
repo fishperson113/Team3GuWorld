@@ -12,10 +12,6 @@ public abstract class GuDecorator : IGu
     {
         baseGu = gu;
     }
-    public virtual void ActivateSkill(int index, ISkillVisitor visitor)
-    {
-        baseGu.ActivateSkill(index, visitor);
-    }
     public List<Skill> GetSkills()
     {
         return baseGu.GetSkills();

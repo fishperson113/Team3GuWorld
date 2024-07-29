@@ -4,10 +4,19 @@ using UnityEngine;
 public class GuController : MonoBehaviour
 {
     public IGu gu { get; set; }
-    public SkillEventChannel skillEventChannel;
     public void ActivateSkill(int index)
     {
-        gu.ActivateSkill(index, new SkillEffect(skillEventChannel));
+        if (index >= 0 && index < gu.GetSkills().Count)
+        {
+            //gu.GetSkills()[index].Accept(new SkillEffect());
+            Skill skill = gu.GetSkills()[index];
+            // Phát sự kiện kỹ năng sử dụng qua SkillEventChannel
+            EventManager.Instance.PublishSkillEvent(skill);
+        }
+        else
+        {
+            Debug.LogWarning($"Skill index {index} out of range.");
+        }
     }
 
     public List<Skill> GetSkills()
