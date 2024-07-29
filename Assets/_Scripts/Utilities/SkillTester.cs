@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class SkillTester : MonoBehaviour
 {
-    public GuController guController;
-
     public void UseSkill(Skill skill)
     {
         if (skill == null)

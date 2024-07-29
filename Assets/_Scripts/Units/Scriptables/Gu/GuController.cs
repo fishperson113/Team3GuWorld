@@ -8,7 +8,6 @@ public class GuController : MonoBehaviour
     {
         if (index >= 0 && index < gu.GetSkills().Count)
         {
-            //gu.GetSkills()[index].Accept(new SkillEffect());
             Skill skill = gu.GetSkills()[index];
             // Phát sự kiện kỹ năng sử dụng qua SkillEventChannel
             EventManager.Instance.PublishSkillEvent(skill);

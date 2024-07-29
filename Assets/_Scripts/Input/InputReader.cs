@@ -19,6 +19,10 @@ public class InputReader : MonoBehaviour
         {
             ActivateSkill(1);
         }
+        if(Input.GetKeyDown(KeyCode.C))
+        {
+            ActivateSkill(2);
+        }
     }
 
     private void ActivateSkill(int index)
