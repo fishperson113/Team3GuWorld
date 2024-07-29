@@ -10,7 +10,6 @@ public abstract class Skill : ScriptableObject, IVisitable
     [SerializeField] protected string skillName;
     [SerializeField] protected string description;
     [SerializeField] protected Sprite skillIcon;
-    
-
     public abstract void Accept(ISkillVisitor visitor);
+
 }
