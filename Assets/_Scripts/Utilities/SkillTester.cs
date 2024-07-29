@@ -1,21 +1,33 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SkillTester : MonoBehaviour
 {
-    private SkillUser skillUser;
-    public void Initialized(GuController gu)
-    {
-        skillUser = new SkillUser(gu.gu);
-    }
+    public GuController guController;
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (guController != null && guController.gu != null)
         {
-            skillUser.ActivateSkill(0);
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+                ActivateSkill(0);
+            }
+            if (Input.GetKeyDown(KeyCode.X))
+            {
+                ActivateSkill(1);
+            }
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                ActivateSkill(2);
+            }
+            if (Input.GetKeyDown(KeyCode.V))
+            {
+                ActivateSkill(3);
+            }
         }
-        if(Input.GetKeyDown(KeyCode.X))
-        {
-            skillUser.ActivateSkill(1);
-        }    
+
+    }
+    private void ActivateSkill(int index)
+    {
+        guController.ActivateSkill(index);
     }
 }

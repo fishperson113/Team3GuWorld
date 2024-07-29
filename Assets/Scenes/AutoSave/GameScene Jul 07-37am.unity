@@ -938,7 +938,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   guController: {fileID: 0}
-  skillEventChannel: {fileID: 0}
 --- !u!1 &1458985691
 GameObject:
   m_ObjectHideFlags: 0

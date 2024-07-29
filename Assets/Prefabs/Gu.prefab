@@ -44,4 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceb1adecca725294c8eb0a230c7244e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  guConfig: {fileID: 11400000, guid: 44909d59c8ac6ac42930540ac61d188d, type: 2}
+  skillEventChannel: {fileID: 11400000, guid: 132729ac700cb33478e56a3c408c70ef, type: 2}
