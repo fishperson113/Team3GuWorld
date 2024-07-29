@@ -15,23 +15,14 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     [HideInInspector] public int count = 1;
     [HideInInspector] public Transform parentAfterDrag;
 
-    [HideInInspector] public Gu item;
+    [HideInInspector] public GuConfig GuItem;
 
-   /* public void InitialiseItem(Item newItem)
+    public void InitialiseGu(GuConfig newGu)
     {
-        item = newItem;
-        if(image != null)
-            image.sprite = newItem.image;
-        Debug.Log("Item initialized: " + newItem.name + ", Sprite: " + newItem.image.name);
-        RefreshCount();
-    }*/
-
-    public void InitialiseGu(Gu newGu)
-    {
-        item = newGu;
+        GuItem = newGu;
         if (image != null)
-            image.sprite = newGu.getGuSprite();
-        Debug.Log("Item initialized: " + newGu.name + ", Sprite: " + newGu.getGuSprite().name);
+            image.sprite = newGu.GetGuSprite();
+        Debug.Log("Item initialized: " + newGu.name + ", Sprite: " + newGu.GetGuSprite().name);
         RefreshCount();
     }
 

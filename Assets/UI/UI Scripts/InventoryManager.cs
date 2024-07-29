@@ -60,7 +60,7 @@ public class InventoryManager : MonoBehaviour
         selectedSlot = newValue;
     }
 
-    public bool AddItem(Gu item)
+    public void AddItem(IGu GuItem)
     {
 
         // Check if any slot has the same item with count lower than max
@@ -69,13 +69,13 @@ public class InventoryManager : MonoBehaviour
             InventorySlot slot = inventorySlots[i];
             InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
             if (itemInSlot != null && 
-                itemInSlot.item == item &&
+                itemInSlot.GuItem == GuItem &&
                 itemInSlot.count < maxStackedItems) //&& itemInSlot.item.stackable == true
             {
 
                 itemInSlot.count++;
                 itemInSlot.RefreshCount();
-                return true;
+                return;
             }
         }
         
@@ -87,37 +87,45 @@ public class InventoryManager : MonoBehaviour
             InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
             if(itemInSlot == null)
             {
-                SpawnNewItem(item, slot);
-                return true;
+                GuConfig guData = GuItem.GetGuData();
+                SpawnNewItem(guData, slot);
+                return;
             }    
         }
-        return false;
+        return;
     }
 
-    void SpawnNewItem(Gu item, InventorySlot slot)
+    void SpawnNewItem(GuConfig GuData, InventorySlot slot)
     {
         GameObject newItemGo = Instantiate(inventoryItemPrefab, slot.transform);
         InventoryItem inventoryItem = newItemGo.GetComponent<InventoryItem>();
-        inventoryItem.InitialiseGu(item);
-    }   
-    
-/*    public Gu UseSelectedItem()
-    {
-        InventorySlot slot = inventorySlots[selectedSlot];
-        InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
-        if(itemInSlot != null)
-        {
-            Gu item = itemInSlot.item;
-            itemInSlot.count--;
-            if(itemInSlot.count <= 0)
-                Destroy(itemInSlot.gameObject);
-            else
-                itemInSlot.RefreshCount();
-            return item;
-        }
+        inventoryItem.InitialiseGu(GuData);
+    }
 
-        return null;
-    }*/
+    /* void SpawnNewItem(IGu GuItem, InventorySlot slot)
+     {
+         GameObject newItemGo = Instantiate(inventoryItemPrefab, slot.transform);
+         InventoryItem inventoryItem = newItemGo.GetComponent<InventoryItem>();
+         inventoryItem.InitialiseGu(GuItem);
+     } */
+
+    /*    public Gu UseSelectedItem()
+        {
+            InventorySlot slot = inventorySlots[selectedSlot];
+            InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+            if(itemInSlot != null)
+            {
+                Gu item = itemInSlot.item;
+                itemInSlot.count--;
+                if(itemInSlot.count <= 0)
+                    Destroy(itemInSlot.gameObject);
+                else
+                    itemInSlot.RefreshCount();
+                return item;
+            }
+
+            return null;
+        }*/
 
     public bool UseSelectedItem()
     {

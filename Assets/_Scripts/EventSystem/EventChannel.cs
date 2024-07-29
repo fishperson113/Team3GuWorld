@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
     public abstract class EventChannel<T> : ScriptableObject {
         readonly HashSet<EventListener<T>> observers = new();
-    
+
         public void Invoke(T value) {
             foreach (var observer in observers) {
                 observer.Raise(value);

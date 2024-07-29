@@ -5,10 +5,11 @@ using UnityEngine;
 public class GameManager : StaticInstance<GameManager>
 {
 
-    [SerializeField] private SkillTester skillTester;
+    [SerializeField] private InputReader inputReader;
+
     void Start()
     {
-        GuController guController = GuManager.Instance.CreateGu();
-        skillTester.Initialized(guController);
+        GuController guController=GuManager.Instance.CreateGu();
+     //   inputReader.guController = guController;
     }
 }

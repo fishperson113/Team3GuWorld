@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 2167505942708378944, guid: 1b39c0fe73f0433468e25eb21cfde7c2, type: 3}
+  m_Sprite: {fileID: 2403724249865808194, guid: 1b39c0fe73f0433468e25eb21cfde7c2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryManager: {fileID: 0}
-  item: {fileID: 11400000, guid: e68f0a1c7689a8c4fa5c959b677fa339, type: 2}
+  gu: {fileID: 11400000, guid: bf76cac485b681b4bb81374f81c45e5e, type: 2}
 --- !u!58 &6732957278926191751
 CircleCollider2D:
   m_ObjectHideFlags: 0

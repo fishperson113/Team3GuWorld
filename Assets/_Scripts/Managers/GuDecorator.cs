@@ -20,4 +20,8 @@ public abstract class GuDecorator : IGu
     {
         return baseGu.GetSkills();
     }
+    public GuConfig GetGuData()
+    {
+        return baseGu.GetGuData();
+    }
 }

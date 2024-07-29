@@ -12,4 +12,5 @@ public interface IGu
 {
     void ActivateSkill(int index, ISkillVisitor visitor);
     List<Skill> GetSkills();
+    GuConfig GetGuData();
 }

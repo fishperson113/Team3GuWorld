@@ -2,8 +2,8 @@
 
 public class InputReader : MonoBehaviour
 {
-    [SerializeField] private Skill skillToActivate;
-    public GuController guController;
+    public GameObject guPrefab;
+   /*// public GuController guController;
     private void Update()
     {
         HandleInput();
@@ -27,6 +27,14 @@ public class InputReader : MonoBehaviour
 
     private void ActivateSkill(int index)
     {
-        guController.ActivateSkill(index);
-    }
+      //  guController.ActivateSkill(index);
+    }*/
+   public void ActivateSkill(IGu Gu)
+    {
+        GameObject guObject = Instantiate(guPrefab);
+        GuController guController = guObject.GetComponent<GuController>();
+        guController.gu = Gu;
+        if (Input.GetKeyDown(KeyCode.X))
+            guController.ActivateSkill(0);
+    }    
 }

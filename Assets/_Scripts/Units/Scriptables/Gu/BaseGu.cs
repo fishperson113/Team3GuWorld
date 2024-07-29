@@ -3,7 +3,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 public class BaseGu : IGu
 {
-    private GuConfig guData;
+    public GuConfig guData { get; private set; }
     public BaseGu(GuConfig gu)
     {
         guData = gu;
@@ -23,5 +23,9 @@ public class BaseGu : IGu
     public List<Skill> GetSkills()
     {
         return guData.GetSkills();
+    }
+    public GuConfig GetGuData()
+    {
+        return guData;
     }
 }

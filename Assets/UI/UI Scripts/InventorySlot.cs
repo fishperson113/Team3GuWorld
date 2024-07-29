@@ -6,10 +6,11 @@ using UnityEngine.UI;
 
 public class InventorySlot : MonoBehaviour, IDropHandler
 {
-    [SerializeField] private Image image;
-    [SerializeField] private Color selectedColor, notSelectedColor;
+    [SerializeField] protected Image image;
+    [SerializeField] protected InventoryItem inventoryItem;
+    [SerializeField] protected Color selectedColor, notSelectedColor;
 
-    private void Awake()
+    protected void Awake()
     {
         DeSelected();
     }
