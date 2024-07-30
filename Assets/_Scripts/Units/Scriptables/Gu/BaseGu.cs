@@ -8,6 +8,7 @@ public class BaseGu : IGu
     {
         guData = gu;
     }
+<<<<<<< HEAD
 
     public void ActivateSkill(int index, ISkillVisitor visitor)
     {
@@ -19,6 +20,11 @@ public class BaseGu : IGu
         {
             Debug.LogWarning($"Skill index {index} out of range.");
         }
+=======
+    public void SetSkills(List<Skill> skills)
+    {
+        guData.SetSkills(skills);
+>>>>>>> c3e5728 (chore: commit before rebase)
     }
     public List<Skill> GetSkills()
     {

@@ -6,6 +6,7 @@ public class SkillPool : ScriptableObject
 {
     [SerializeField] private List<Skill> skills = new List<Skill>();
 
+<<<<<<< HEAD
     private ISkillVisitor skillVisitor;
 
     private void OnEnable()
@@ -24,6 +25,8 @@ public class SkillPool : ScriptableObject
             Debug.LogWarning($"Skill index {index} out of range.");
         }
     }
+=======
+>>>>>>> c3e5728 (chore: commit before rebase)
     public List<Skill> GetSkills()
     {
         return skills;

@@ -3,15 +3,13 @@ using System.Collections.Generic;
 [CreateAssetMenu(fileName = "BaseGu", menuName = "Gu System/BaseGu")]
 public class GuConfig : ScriptableObject
 {
-    [SerializeField] private string guName;
-    [SerializeField] private Sprite icon;
+    public string guName { get; set; }
+    public Sprite icon { get; private set; }
     [SerializeField] private List<Skill> skills = new List<Skill>();
 
-    public void Initialize(string name, Sprite sprite, List<Skill> skillList)
+    public void SetSkills(List<Skill> skills)
     {
-        guName = name;
-        icon = sprite;
-        skills = new List<Skill>(skillList);
+        this.skills = new List<Skill>(skills);
     }
     public List<Skill> GetSkills()
     {
