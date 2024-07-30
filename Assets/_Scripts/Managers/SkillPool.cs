@@ -17,7 +17,7 @@ public class SkillPool : ScriptableObject
         if (index >= 0 && index < skills.Count)
         {
             Skill skill = skills[index];
-            skill.Accept(skillVisitor); 
+            skill.Accept(skillVisitor);
         }
         else
         {

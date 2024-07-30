@@ -10,6 +10,6 @@ public class GameManager : StaticInstance<GameManager>
     void Start()
     {
         GuController guController=GuManager.Instance.CreateGu();
-        inputReader.guController = guController;
+     //   inputReader.guController = guController;
     }
 }

@@ -15,3 +15,5 @@ MonoBehaviour:
   skillName: 
   description: 
   skillIcon: {fileID: 0}
+  skillAction: 0
+  skillType: 0

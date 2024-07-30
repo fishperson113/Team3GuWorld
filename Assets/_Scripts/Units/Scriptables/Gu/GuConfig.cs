@@ -17,5 +17,10 @@ public class GuConfig : ScriptableObject
     {
         return skills;
     }
+    public Sprite GetGuSprite()
+    {
+        return icon;
+    }    
+  
 }
 

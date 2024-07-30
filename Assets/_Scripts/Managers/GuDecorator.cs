@@ -1,9 +1,9 @@
 ﻿
 using System.Collections.Generic;
 public abstract class GuDecorator : IGu
-{   
+{
     protected IGu baseGu;
-    
+
     protected GuDecorator(IGu gu)
     {
         baseGu = gu;
@@ -12,8 +12,16 @@ public abstract class GuDecorator : IGu
     {
         baseGu = gu;
     }
+    public virtual void ActivateSkill(int index, ISkillVisitor visitor)
+    {
+        baseGu.ActivateSkill(index, visitor);
+    }
     public List<Skill> GetSkills()
     {
         return baseGu.GetSkills();
+    }
+    public GuConfig GetGuData()
+    {
+        return baseGu.GetGuData();
     }
 }
