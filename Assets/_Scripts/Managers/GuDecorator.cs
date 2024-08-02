@@ -20,19 +20,12 @@ public abstract class GuDecorator : IGu
     {
         return baseGu.GetSkills();
     }
-<<<<<<< HEAD
-=======
     public void SetSkills(List<Skill> skills)
     {
         baseGu.SetSkills(skills);
     }
->>>>>>> c3e5728 (chore: commit before rebase)
     public GuConfig GetGuData()
     {
         return baseGu.GetGuData();
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> c3e5728 (chore: commit before rebase)

@@ -2,16 +2,8 @@
 
 public class InputReader : MonoBehaviour
 {
-<<<<<<< HEAD
-    public GameObject guPrefab;
-   /*// public GuController guController;
-=======
     public GuController guController;
-    public EventChannel togglerEventChannel;
-    public GuEventChannel EquipGu;
-    private IGu guToEquip;
-    private IGu currentGu;
->>>>>>> c3e5728 (chore: commit before rebase)
+    public EventChannel[] togglerEventChannel;
     private void Update()
     {
         HandleInput();
@@ -31,63 +23,25 @@ public class InputReader : MonoBehaviour
         {
             ActivateSkill(2);
         }
-        if(Input.GetKeyDown(KeyCode.E))
+        if(Input.GetKeyDown(KeyCode.Q)) // DevUI
         {
-            CheckEquipGu();
-            togglerEventChannel.Invoke(new Empty());
+            togglerEventChannel[0].Invoke(new Empty());
         }    
+        if(Input.GetKeyDown(KeyCode.E))// GuView
+        {
+            togglerEventChannel[1].Invoke(new Empty());
+        }
+        if (Input.GetKeyDown(KeyCode.I)) // Inventory
+        {
+            togglerEventChannel[2].Invoke(new Empty());
+        }
     }
-    private void CheckEquipGu()
+    public void SetGuController(IGu gu)
     {
-        if(guController!=null)
-        {
-            Equip(guController.gu);
-        }
-        else
-        {
-            if (currentGu != null && currentGu == guToEquip)
-            {
-                return;
-            }
-
-            // Unregister the current gu if it is not the gu to equip
-            if (currentGu != null && currentGu != guToEquip)
-            {
-                UnregisterGu(currentGu);
-            }
-
-            // Create a DefaultInstance for display
-            guToEquip = GuManager.Instance.CreateDefaultInstance();
-            Equip(guToEquip);
-        }
-    }    
-
+        guController.gu = gu;
+    }
     private void ActivateSkill(int index)
     {
-<<<<<<< HEAD
-      //  guController.ActivateSkill(index);
-    }*/
-   public void ActivateSkill(IGu Gu)
-    {
-        GameObject guObject = Instantiate(guPrefab);
-        GuController guController = guObject.GetComponent<GuController>();
-        guController.gu = Gu;
-        if (Input.GetKeyDown(KeyCode.X))
-            guController.ActivateSkill(0);
-    }    
-=======
-        guController.ActivateSkill(index);
+       guController.ActivateSkill(index);
     }
-
-    private void Equip(IGu gu)
-    {
-        currentGu = gu;
-        EquipGu.Invoke(currentGu);
-    }
-
-    private void UnregisterGu(IGu gu)
-    {
-        currentGu = null;
-    }
->>>>>>> c3e5728 (chore: commit before rebase)
 }

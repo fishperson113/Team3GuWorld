@@ -3,8 +3,8 @@ using System.Collections.Generic;
 [CreateAssetMenu(fileName = "BaseGu", menuName = "Gu System/BaseGu")]
 public class GuConfig : ScriptableObject
 {
-    public string guName { get; set; }
-    public Sprite icon { get; private set; }
+    public string guName;
+    public Sprite icon;
     [SerializeField] private List<Skill> skills = new List<Skill>();
 
     public void SetSkills(List<Skill> skills)

@@ -8,19 +8,15 @@ public static class GuFactory
     {
         GuConfig clonedConfig = ScriptableObject.CreateInstance<GuConfig>();
         clonedConfig.SetSkills(guTemplates.GetSkills());
+        clonedConfig.icon = guTemplates.icon;
+        clonedConfig.guName = guTemplates.guName;
         return new BaseGu(clonedConfig);
     }
 }
 public interface IGu
 {
-<<<<<<< HEAD
     void ActivateSkill(int index, ISkillVisitor visitor);
     List<Skill> GetSkills();
     GuConfig GetGuData();
-=======
     void SetSkills(List<Skill> skills);
-    List<Skill> GetSkills();
-    GuConfig GetGuData();
-    
->>>>>>> c3e5728 (chore: commit before rebase)
 }

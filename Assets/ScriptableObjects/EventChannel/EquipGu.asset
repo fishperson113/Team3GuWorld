@@ -10,9 +10,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b6e4da6f30ee5fa4d855f8fd4611ad20, type: 3}
-<<<<<<<< HEAD:Assets/ScriptableObjects/EventChannel/New Gu Event Channel.asset
-  m_Name: New Gu Event Channel
-========
   m_Name: EquipGu
->>>>>>>> c3e5728 (chore: commit before rebase):Assets/ScriptableObjects/EventChannel/EquipGu.asset
   m_EditorClassIdentifier: 

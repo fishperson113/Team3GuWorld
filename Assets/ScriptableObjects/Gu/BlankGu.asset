@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24dda7494ce52cd46825b541e2a2300b, type: 3}
   m_Name: BlankGu
   m_EditorClassIdentifier: 
-  guName: 
-  icon: {fileID: 0}
+  guName: ABC
+  icon: {fileID: 21300000, guid: c108ff40cd842334bbef5f1be113e603, type: 3}
   skills: []

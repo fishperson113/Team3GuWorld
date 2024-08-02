@@ -3,12 +3,11 @@ using Unity.VisualScripting;
 using UnityEngine;
 public class BaseGu : IGu
 {
-    public GuConfig guData { get; private set; }
+    public GuConfig guData { get;private set; }
     public BaseGu(GuConfig gu)
     {
         guData = gu;
     }
-<<<<<<< HEAD
 
     public void ActivateSkill(int index, ISkillVisitor visitor)
     {
@@ -20,11 +19,10 @@ public class BaseGu : IGu
         {
             Debug.LogWarning($"Skill index {index} out of range.");
         }
-=======
+    }
     public void SetSkills(List<Skill> skills)
     {
         guData.SetSkills(skills);
->>>>>>> c3e5728 (chore: commit before rebase)
     }
     public List<Skill> GetSkills()
     {
