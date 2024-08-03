@@ -196,50 +196,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!1 &176626336
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 176626337}
-  - component: {fileID: 176626338}
-  m_Layer: 0
-  m_Name: KeyboardManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &176626337
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 176626336}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1458985692}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &176626338
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 176626336}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6d45668e27932642813a3a8ed251fc2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &260521120 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4841154272699342066, guid: 38226eaf0ec38c5418f54b961258180c, type: 3}
@@ -562,52 +518,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7419621476600698404, guid: ab21a94d1267bc7418e7eb5a3e058fcd, type: 3}
   m_PrefabInstance: {fileID: 1089557813}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &783541044
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 783541045}
-  - component: {fileID: 783541046}
-  m_Layer: 0
-  m_Name: PlayerCloneManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &783541045
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 783541044}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1458985692}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &783541046
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 783541044}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06c2d624bc1bbff49ad72e02e7c6c297, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerClonePrefab: {fileID: 1226995045633360559, guid: 685a9ac3db486924696077ea44692fcc, type: 3}
-  canCreateClone: 0
 --- !u!4 &858072946 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3342671450373778501, guid: ce8d4c3e264c0f14585003ec8b4a98b4, type: 3}
@@ -1394,9 +1304,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1544650614272011804, guid: 88097b566ad1fdd489d7ee77465b57aa, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1224211009}
-    - targetCorrespondingSourceObject: {fileID: 1544650614272011804, guid: 88097b566ad1fdd489d7ee77465b57aa, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1224211014}
   m_SourcePrefab: {fileID: 100100000, guid: 88097b566ad1fdd489d7ee77465b57aa, type: 3}
 --- !u!1 &1224211008 stripped
 GameObject:
@@ -1433,23 +1340,6 @@ MonoBehaviour:
   m_DefaultActionMap: normal
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &1224211014
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1224211008}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39b1d6503c4aafe439b17d19f92275c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isRecorded: 0
-  startTime: 0
-  cloneScale: {x: 0, y: 0, z: 0}
-  maxTime: 3
-  allParent: []
 --- !u!1 &1248284485
 GameObject:
   m_ObjectHideFlags: 0
@@ -1683,8 +1573,6 @@ Transform:
   - {fileID: 137934724}
   - {fileID: 636151758}
   - {fileID: 1174413385}
-  - {fileID: 783541045}
-  - {fileID: 176626337}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1589256305 stripped
