@@ -2,8 +2,8 @@
 
 public class InputReader : MonoBehaviour
 {
-    public GameObject guPrefab;
-   /*// public GuController guController;
+    public GuController guController;
+    public EventChannel[] togglerEventChannel;
     private void Update()
     {
         HandleInput();
@@ -23,18 +23,25 @@ public class InputReader : MonoBehaviour
         {
             ActivateSkill(2);
         }
+        if(Input.GetKeyDown(KeyCode.Q)) // DevUI
+        {
+            togglerEventChannel[0].Invoke(new Empty());
+        }    
+        if(Input.GetKeyDown(KeyCode.E))// GuView
+        {
+            togglerEventChannel[1].Invoke(new Empty());
+        }
+        if (Input.GetKeyDown(KeyCode.I)) // Inventory
+        {
+            togglerEventChannel[2].Invoke(new Empty());
+        }
     }
-
+    public void SetGuController(IGu gu)
+    {
+        guController.gu = gu;
+    }
     private void ActivateSkill(int index)
     {
-      //  guController.ActivateSkill(index);
-    }*/
-   public void ActivateSkill(IGu Gu)
-    {
-        GameObject guObject = Instantiate(guPrefab);
-        GuController guController = guObject.GetComponent<GuController>();
-        guController.gu = Gu;
-        if (Input.GetKeyDown(KeyCode.X))
-            guController.ActivateSkill(0);
-    }    
+       guController.ActivateSkill(index);
+    }
 }

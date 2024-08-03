@@ -3,7 +3,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 public class BaseGu : IGu
 {
-    public GuConfig guData { get; private set; }
+    public GuConfig guData { get;private set; }
     public BaseGu(GuConfig gu)
     {
         guData = gu;
@@ -19,6 +19,10 @@ public class BaseGu : IGu
         {
             Debug.LogWarning($"Skill index {index} out of range.");
         }
+    }
+    public void SetSkills(List<Skill> skills)
+    {
+        guData.SetSkills(skills);
     }
     public List<Skill> GetSkills()
     {

@@ -20,6 +20,10 @@ public abstract class GuDecorator : IGu
     {
         return baseGu.GetSkills();
     }
+    public void SetSkills(List<Skill> skills)
+    {
+        baseGu.SetSkills(skills);
+    }
     public GuConfig GetGuData()
     {
         return baseGu.GetGuData();
