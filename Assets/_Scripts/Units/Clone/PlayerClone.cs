@@ -7,20 +7,15 @@ using Unity.VisualScripting;
 
 public class PlayerClone : MonoBehaviour
 {
-    private RewindRecorder rewindRecorder;
-
     private SpriteRenderer spriteRenderer;
-
-    private Stack<RewindData> forwardData;
     private Stack<RewindData> backwardData;
-    private Queue<RewindData> rewindData;
+    private Stack<RewindData> forwardData;
 
     private Material mat;
-    private float appearTime;
     private void Awake()
     {
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-        rewindRecorder = GameObject.FindGameObjectWithTag("Player").GetComponent<RewindRecorder>();
+        
     }
     private void Start()
     {
@@ -29,12 +24,11 @@ public class PlayerClone : MonoBehaviour
     }
     public void rewind(Stack<RewindData> data)
     {
-        rewindData = new Queue<RewindData>();
-        foreach (RewindData item in data)
-        {
-            rewindData.Enqueue(item);
-        }
-        appearTime = data.Count * Time.fixedDeltaTime;
+        RewindData[] arr = new RewindData[data.Count];
+        data.CopyTo(arr, 0);
+        Array.Reverse(arr);
+        forwardData = new Stack<RewindData>(arr);
+        backwardData = new Stack<RewindData>();
         spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1);
     }
     private void Update()
@@ -43,18 +37,36 @@ public class PlayerClone : MonoBehaviour
         {
             return;
         }
-        if (!rewindRecorder.isRecorded)
+        if (!RewindRecorder.isRecorded)
         {
-            if (rewindData.Count==0)
+            if (forwardData.Count == 0)
             {
                 deletedClone();
+                backwardData.Clear();
                 return;
             }
-            RewindData newData = rewindData.Dequeue();
+            RewindData newData = forwardData.Pop();
             gameObject.transform.position = newData.position;
             gameObject.transform.localScale = newData.scale;
+
+            backwardData.Push(newData);
         }
-        
+        else
+        {
+            if (backwardData.Count > 0)
+            {
+                RewindData newData = backwardData.Pop();
+                forwardData.Push(newData);
+                gameObject.transform.position = newData.position;
+                gameObject.transform.localScale = newData.scale;
+            }
+            else
+            {
+                deletedClone();
+                forwardData.Clear();
+            }
+
+        }
     }
     IEnumerator disolve()
     {
