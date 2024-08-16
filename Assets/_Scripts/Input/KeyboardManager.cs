@@ -14,16 +14,11 @@ public class KeyboardManager : Singleton<KeyboardManager>
     protected override void Awake()
     {
         base.Awake();
-
         input = new PlayerInput();
         LoadBindingOveride("normal/Walk");
         LoadBindingOveride("normal/Jump");
         LoadBindingOveride("normal/Rewind");
         LoadBindingOveride("normal/Interact");
-        LoadBindingOveride("normal/RightArrow");
-        LoadBindingOveride("normal/LeftArrow");
-        LoadBindingOveride("normal/UpArrow");
-        LoadBindingOveride("normal/DownArrow");
     }
     public void DoRebind(string actionName, int bindingIndex, List<KeyboardRebind> otherKeys)
     {

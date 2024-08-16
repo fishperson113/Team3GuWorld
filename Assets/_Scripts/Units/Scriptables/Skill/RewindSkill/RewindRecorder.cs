@@ -6,43 +6,40 @@ using UnityEngine.InputSystem;
 
 public class RewindRecorder : MonoBehaviour
 {
-    [HideInInspector] public bool isRecorded;
-    [HideInInspector] public Stack<RewindData> recordedData;
+    [HideInInspector] public static bool isRecorded;
+    [HideInInspector] public static Stack<RewindData> recordedData;
     [HideInInspector] public float startTime;
     [HideInInspector] public Vector3 cloneScale;
     public float maxTime;
     public delegate void rewindActions();
-    public rewindActions startRewind, endRewind;
+    public static event rewindActions startRewind, endRewind;
     private PlayerInput input;
     public Transform[] allParent;
-    private void OnEnable()
-    { 
-        input.Enable();
-    }
+    
     private void OnDisable()
     {
         input.Disable();
     }
-    private void Awake()
+    private void Start()
     {
         input = KeyboardManager.Instance.input;
+        input.Enable();
         recordedData = new Stack<RewindData>();
-        startRewind += StartRewind;
-        endRewind += EndRewind;
         input.normal.Rewind.performed += RewindPerform;
         isRecorded = false;
     }
+    
     private void RewindPerform(InputAction.CallbackContext e)
     {
         if (Time.timeScale == 1)
         {
             if (isRecorded == false)
             {
-                startRewind();
+                StartRewind();
             }
             else if (isRecorded == true)
             {
-                endRewind();
+                EndRewind();
             }
         }
     }
@@ -50,11 +47,13 @@ public class RewindRecorder : MonoBehaviour
     {
         StartCoroutine("record", record());
         isRecorded = true;
+        startRewind?.Invoke();
     }
     private void EndRewind()
     {
         StopCoroutine("record");
         isRecorded = false;
+        endRewind?.Invoke();
     }
     private void Update()
     {
@@ -70,6 +69,6 @@ public class RewindRecorder : MonoBehaviour
     IEnumerator record()
     {
         yield return new WaitForSeconds(maxTime);
-        endRewind();
+        EndRewind();
     }
 }

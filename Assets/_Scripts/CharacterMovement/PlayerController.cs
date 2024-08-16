@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace TarodevController
@@ -28,6 +29,7 @@ namespace TarodevController
         #endregion
         private float _time;
 
+
         private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
@@ -35,7 +37,6 @@ namespace TarodevController
 
             _cachedQueryStartInColliders = Physics2D.queriesStartInColliders;
         }
-
         private void Update()
         {
             _time += Time.deltaTime;

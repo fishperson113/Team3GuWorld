@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - FirePoint
+  - Clone
+  - Box
+  - Environment
   layers:
   - Default
   - TransparentFX
