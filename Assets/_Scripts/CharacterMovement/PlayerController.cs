@@ -1,9 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-
-namespace TarodevController
-{
     /// <summary>
     /// Hey!
     /// Tarodev here. I built this controller as there was a severe lack of quality & free 2D controllers out there.
@@ -206,4 +203,3 @@ namespace TarodevController
         public event Action Jumped;
         public Vector2 FrameInput { get; }
     }
-}
