@@ -11,26 +11,34 @@ public class PlayerClone : MonoBehaviour
     private Stack<RewindData> backwardData;
     private Stack<RewindData> forwardData;
 
+    private Stack<RewindData> objBackwardData;
+    private Stack<RewindData> objForwardData;
+    [SerializeField]private RewindableObject objInteract;
+
     private Material mat;
+
+    
     private void Awake()
     {
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-        
     }
     private void Start()
     {
         mat = spriteRenderer.material;
         mat.SetFloat("Fade", 1);
     }
-    public void rewind(Stack<RewindData> data)
+    public void Rewind(Stack<RewindData> data, RewindableObject objData)
     {
-        RewindData[] arr = new RewindData[data.Count];
-        data.CopyTo(arr, 0);
-        Array.Reverse(arr);
-        forwardData = new Stack<RewindData>(arr);
-        backwardData = new Stack<RewindData>();
-        spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1);
+        InitRewindData(data, ref this.forwardData, ref this.backwardData);
+        if(objData.GetRewindData().Count > 0)
+        {
+            objInteract = objData;
+            InitRewindData(objData.GetRewindData(), ref this.objForwardData, ref this.objBackwardData);
+            Debug.Log("co gi do");
+        }
+        objData.GetRewindData().Clear();
     }
+        
     private void Update()
     {
         if (Time.timeScale == 0)
@@ -41,15 +49,24 @@ public class PlayerClone : MonoBehaviour
         {
             if (forwardData.Count == 0)
             {
-                deletedClone();
+                DeletedClone();
                 backwardData.Clear();
+
+                if(objInteract !=null)
+                    objBackwardData.Clear();
+
                 return;
             }
             RewindData newData = forwardData.Pop();
-            gameObject.transform.position = newData.position;
-            gameObject.transform.localScale = newData.scale;
-
+            ApplyRewindData(newData);
             backwardData.Push(newData);
+
+            if (objInteract != null && objForwardData.Count > 0)
+            {
+                RewindData objData = objForwardData.Pop();
+                ApplyObjectRewindData(objInteract, objData);
+                objBackwardData.Push(objData);
+            }
         }
         else
         {
@@ -57,18 +74,38 @@ public class PlayerClone : MonoBehaviour
             {
                 RewindData newData = backwardData.Pop();
                 forwardData.Push(newData);
-                gameObject.transform.position = newData.position;
-                gameObject.transform.localScale = newData.scale;
+                ApplyRewindData(newData);
+
+                if (objInteract != null && objBackwardData.Count > 0)
+                {
+                    RewindData objData = objBackwardData.Pop();
+                    objForwardData.Push(objData);
+                    ApplyObjectRewindData(objInteract, objData);
+                }
             }
             else
             {
-                deletedClone();
+                DeletedClone();
                 forwardData.Clear();
+                if(objInteract!=null)
+                    objForwardData.Clear();
             }
 
         }
     }
-    IEnumerator disolve()
+    private void ApplyRewindData(RewindData data)
+    {
+        transform.position = data.position;
+        transform.rotation = data.rotation;
+        transform.localScale = data.scale;
+    }
+    private void ApplyObjectRewindData(RewindableObject obj, RewindData data)
+    {
+        obj.transform.position = data.position;
+        obj.transform.rotation = data.rotation;
+        obj.transform.localScale = data.scale;
+    }
+    IEnumerator Disolve()
     {
         transform.parent = null;
         while (mat.GetFloat("Fade") != 0)
@@ -78,11 +115,19 @@ public class PlayerClone : MonoBehaviour
         }
         Destroy(gameObject);
     }
-    private void deletedClone()
+    private void DeletedClone()
     {
         if (spriteRenderer.sprite != null && mat.GetFloat("Fade") == 1)
         {
-            StartCoroutine(disolve());
+            StartCoroutine(Disolve());
         }
+    }
+    private void InitRewindData(Stack<RewindData> data, ref Stack<RewindData> forwardData, ref Stack<RewindData> backwardData)
+    {
+        RewindData[] arr = new RewindData[data.Count];
+        data.CopyTo(arr, 0);
+        Array.Reverse(arr);
+        forwardData = new Stack<RewindData>(arr);
+        backwardData = new Stack<RewindData>();
     }
 }

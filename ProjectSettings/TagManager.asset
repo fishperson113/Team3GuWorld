@@ -7,6 +7,7 @@ TagManager:
   - FirePoint
   - Clone
   - Box
+  - Environment
   layers:
   - Default
   - TransparentFX

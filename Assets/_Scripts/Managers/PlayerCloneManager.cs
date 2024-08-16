@@ -7,6 +7,7 @@ public class PlayerCloneManager : Singleton<PlayerCloneManager>
 {
     public GameObject playerClonePrefab;
     [HideInInspector] public bool canCreateClone;
+    [HideInInspector] public RewindableObject objRewind;
     private void Start()
     {
         canCreateClone = true;
@@ -16,12 +17,18 @@ public class PlayerCloneManager : Singleton<PlayerCloneManager>
     { 
        RewindRecorder.endRewind -= createClone;
     }
+    public void ReceiveObjRewindData(RewindableObject obj)
+    {
+        Debug.Log("ReceiveObjRewindData");
+        objRewind = obj;
+
+    }
     private void createClone()
     {
         if (canCreateClone)
         {
             GameObject cloned = Instantiate(playerClonePrefab);
-            cloned.GetComponent<PlayerClone>().rewind(RewindRecorder.recordedData);
+            cloned.GetComponent<PlayerClone>().Rewind(RewindRecorder.recordedData,objRewind);
             RewindRecorder.recordedData.Clear();
         }
     }

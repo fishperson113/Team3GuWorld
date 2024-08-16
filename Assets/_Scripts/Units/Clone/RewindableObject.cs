@@ -4,17 +4,16 @@ using UnityEngine;
 
 public abstract class RewindableObject:MonoBehaviour
 {
-    protected Stack<RewindData> rewindData = new Stack<RewindData>();
+    protected Stack<RewindData> rewindData = new Stack<RewindData>(); // stack dữ liệu rewind của object
 
+    [SerializeField] protected RewindableObjEventChannel RewindDataEventChannel; //SO để gửi dữ liệu rewind của object cho clone
     protected virtual void Awake()
     {
-        RewindRecorder.startRewind += StartRecording;
         RewindRecorder.endRewind += StartRewinding;
     }
 
     protected virtual void OnDestroy()
     {
-        RewindRecorder.startRewind -= StartRecording;
         RewindRecorder.endRewind -= StartRewinding;
     }
 
@@ -26,7 +25,7 @@ public abstract class RewindableObject:MonoBehaviour
     protected virtual void StartRewinding()
     {
         StopCoroutine("Record");
-        StartCoroutine(LoadState());
+        RewindDataEventChannel.Invoke(this);
     }
 
     protected virtual IEnumerator Record()
@@ -43,16 +42,15 @@ public abstract class RewindableObject:MonoBehaviour
             yield return null;
         }
     }
-
-    protected virtual IEnumerator LoadState()
+    protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
-        while (rewindData.Count > 0)
+        if (collision.gameObject.CompareTag("Player") && RewindRecorder.isRecorded)
         {
-            RewindData data = rewindData.Pop();
-            transform.position = data.position;
-            transform.rotation = data.rotation;
-            transform.localScale = data.scale;
-            yield return null;
+            StartRecording();
         }
+    }
+    public Stack<RewindData> GetRewindData()
+    {
+        return rewindData;
     }
 }

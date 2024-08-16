@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4014374677870695932
+--- !u!1 &622258743360930347
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,9 +8,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4440936670259443698}
-  - component: {fileID: 4906884017667055054}
-  - component: {fileID: 2090553595819604318}
+  - component: {fileID: 3057309199965870059}
+  - component: {fileID: 9036556687781900402}
+  - component: {fileID: 4626806044363583735}
   m_Layer: 0
   m_Name: GuSpawner
   m_TagString: Untagged
@@ -18,13 +18,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4440936670259443698
+--- !u!4 &3057309199965870059
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4014374677870695932}
+  m_GameObject: {fileID: 622258743360930347}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -33,36 +33,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4906884017667055054
+--- !u!114 &9036556687781900402
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4014374677870695932}
+  m_GameObject: {fileID: 622258743360930347}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a034cfc417bfbd74c9ee011828430de0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GuPrefab: {fileID: 6103519093551315661, guid: a83628df4ebd04240904884ed402d359, type: 3}
---- !u!114 &2090553595819604318
+  GuPrefab: {fileID: 4174900712192188342, guid: ba50ce4d755462b46b6b04c0c803a4a2, type: 3}
+--- !u!114 &4626806044363583735
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4014374677870695932}
+  m_GameObject: {fileID: 622258743360930347}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 652381d6a392f25408fcdfa00666d789, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventChannel: {fileID: 11400000, guid: d904ae8043aa90b429b1afe8e4937b27, type: 2}
+  eventChannel: {fileID: 11400000, guid: c897ac96a1856574fa7a996ee604690c, type: 2}
   unityEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4906884017667055054}
+      - m_Target: {fileID: 9036556687781900402}
         m_TargetAssemblyTypeName: GuSpawner, Assembly-CSharp
         m_MethodName: CreateGu
         m_Mode: 0

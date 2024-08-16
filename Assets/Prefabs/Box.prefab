@@ -171,3 +171,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c839a3b2848571443b1841cb1f72e357, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RewindDataEventChannel: {fileID: 11400000, guid: c09e6e7d0a66d1748bbb056d483de07c, type: 2}

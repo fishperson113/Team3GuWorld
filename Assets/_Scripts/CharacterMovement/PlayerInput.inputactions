@@ -40,42 +40,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "RightArrow",
-                    "type": "Button",
-                    "id": "785bb37b-db7e-4ec7-a908-27ee760eec1f",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "LeftArrow",
-                    "type": "Button",
-                    "id": "569800b2-ea8c-4070-a6fb-f757b43ca675",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "UpArrow",
-                    "type": "Button",
-                    "id": "baff7771-fb31-4f48-8bb5-117057370141",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "DownArrow",
-                    "type": "Button",
-                    "id": "c8cea296-45dc-4b98-8b26-d969f9364530",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -109,50 +73,6 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Interact",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "703f15d1-4af3-4408-ad11-ffafaacc1fb9",
-                    "path": "<Keyboard>/rightArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "RightArrow",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "099078ca-a49a-4987-aa26-e64f35242dce",
-                    "path": "<Keyboard>/leftArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "LeftArrow",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "bf244817-d997-4a72-8bae-4ae5408283e6",
-                    "path": "<Keyboard>/upArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "UpArrow",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "c7d5c533-c097-4397-a1de-2138603518c4",
-                    "path": "<Keyboard>/downArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "DownArrow",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
