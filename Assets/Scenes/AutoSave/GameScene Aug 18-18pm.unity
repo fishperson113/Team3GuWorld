@@ -270,9 +270,8 @@ GameObject:
   - component: {fileID: 432251526}
   - component: {fileID: 432251525}
   - component: {fileID: 432251527}
-  - component: {fileID: 432251528}
   m_Layer: 0
-  m_Name: Door
+  m_Name: Square (5)
   m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -397,28 +396,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 432251523}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2aa48d0a4262f4d43ab812e243a07a8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   buttons: []
-  openYPosition: 2
+  openPosition: {x: 0, y: 10, z: 0}
   moveSpeed: 2
---- !u!114 &432251528
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 432251523}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60d1751d93f66574c81659196f504ff7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 0
-  openYPosition: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -480,7 +465,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 7
+  orthographic size: 5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1301,10 +1286,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1625821509}
   - component: {fileID: 1625821510}
-  - component: {fileID: 1625821511}
   - component: {fileID: 1625821512}
+  - component: {fileID: 1625821511}
   m_Layer: 0
-  m_Name: Button
+  m_Name: Square (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1431,10 +1416,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1625821508}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90e3f8ec21abb084f8f08faf08bd98aa, type: 3}
+  m_Script: {fileID: 11500000, guid: bc4f07519e46ce84cb83d6042a067198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorA: {fileID: 432251523}
+  check: 0
 --- !u!1001 &4229355529668464455
 PrefabInstance:
   m_ObjectHideFlags: 0

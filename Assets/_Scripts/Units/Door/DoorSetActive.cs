@@ -17,15 +17,24 @@ using UnityEngine;
 public class DoorSetActive : MonoBehaviour, IDoor {
 
     private bool isOpen = false;
+    public float moveSpeed=1f;
+    public float openYPosition;
+    private Vector3 closedPosition;
 
+    private void Awake()
+    {
+        closedPosition = transform.position;
+    }
     public void OpenDoor() {
         isOpen = true;
-        gameObject.SetActive(false);
+        Vector3 targetPosition = new Vector3(closedPosition.x, openYPosition, closedPosition.z);
+        StartCoroutine(MoveDoor(targetPosition));
     }
 
     public void CloseDoor() {
         isOpen = false;
-        gameObject.SetActive(true);
+        StopAllCoroutines();
+        StartCoroutine(MoveDoor(closedPosition));
     }
 
     public void ToggleDoor() {
@@ -36,5 +45,12 @@ public class DoorSetActive : MonoBehaviour, IDoor {
             CloseDoor();
         }
     }
-
+    private IEnumerator MoveDoor(Vector3 targetPosition)
+    {
+        while (Vector3.Distance(transform.position, targetPosition) > 0.01f)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+            yield return null;
+        }
+    }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
     [HideInInspector] public List<Button> buttons; //List các button ảnh hưởng đến việc mở cửa
-    public Vector3 openPosition; 
+    public float openYPosition;
     private Vector3 closedPosition; 
     public float moveSpeed = 2f; 
     
@@ -18,7 +18,8 @@ public class Door : MonoBehaviour
 
     private void Open()
     {
-        StartCoroutine(MoveDoor(openPosition));   
+        Vector3 targetPosition = new Vector3(closedPosition.x, openYPosition, closedPosition.z);
+        StartCoroutine(MoveDoor(targetPosition));   
     }
     private void Close()
     {
@@ -28,7 +29,7 @@ public class Door : MonoBehaviour
 
     private IEnumerator MoveDoor(Vector3 targetPosition)
     {
-        while (Vector3.Distance(transform.position, targetPosition) !=0)
+        while (Vector3.Distance(transform.position, targetPosition) > 0.01f)
         {
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
             yield return null;
