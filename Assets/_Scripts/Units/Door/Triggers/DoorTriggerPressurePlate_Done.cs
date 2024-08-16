@@ -16,27 +16,42 @@ using UnityEngine;
 
 public class DoorTriggerPressurePlate_Done : MonoBehaviour {
 
-    [SerializeField] private GameObject doorA;
+    [SerializeField] private GameObject doorA;  // Cửa cần quản lý
+    [SerializeField] private List<PressurePlate> pressurePlates; // Danh sách các pressure plates
 
     private IDoor door;
-    private float timer;
+    private int activePlates = 0; // Biến đếm số plates đang bị nhấn
 
-    private void Update() {
-        if (timer > 0f) {
-            timer -= Time.deltaTime;
-            if (timer <= 0f) {
-                door.CloseDoor();
-            }
+    private void Awake()
+    {
+        door = doorA.GetComponent<IDoor>();
+
+        // Đăng ký sự kiện cho tất cả các pressure plates
+        foreach (PressurePlate plate in pressurePlates)
+        {
+            plate.onPlateTriggered += HandlePlateTriggered;
         }
     }
 
-    private void OnTriggerStay2D(Collider2D collision) {
-        float timeToStayOpen = 2f;
-        timer = timeToStayOpen;
-    }
+    private void HandlePlateTriggered(bool isActive)
+    {
+        if (isActive)
+        {
+            activePlates++;
+        }
+        else
+        {
+            activePlates--;
+        }
 
-    private void OnTriggerEnter2D(Collider2D collision) {
-        door.OpenDoor();
+        // Kiểm tra xem tất cả các plates đã bị nhấn chưa
+        if (activePlates == pressurePlates.Count)
+        {
+            door.OpenDoor();
+        }
+        else
+        {
+            door.CloseDoor();
+        }
     }
-
 }

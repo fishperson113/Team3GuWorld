@@ -418,7 +418,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 0
-  openYPosition: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
