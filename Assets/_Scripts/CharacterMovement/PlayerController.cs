@@ -1,25 +1,32 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-    /// <summary>
-    /// Hey!
-    /// Tarodev here. I built this controller as there was a severe lack of quality & free 2D controllers out there.
-    /// I have a premium version on Patreon, which has every feature you'd expect from a polished controller. Link: https://www.patreon.com/tarodev
-    /// You can play and compete for best times here: https://tarodev.itch.io/extended-ultimate-2d-controller
-    /// If you hve any questions or would like to brag about your score, come to discord: https://discord.gg/tarodev
-    /// </summary>
-    [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
+using UnityEngine.InputSystem;
+/// <summary>
+/// Hey!
+/// Tarodev here. I built this controller as there was a severe lack of quality & free 2D controllers out there.
+/// I have a premium version on Patreon, which has every feature you'd expect from a polished controller. Link: https://www.patreon.com/tarodev
+/// You can play and compete for best times here: https://tarodev.itch.io/extended-ultimate-2d-controller
+/// If you hve any questions or would like to brag about your score, come to discord: https://discord.gg/tarodev
+/// </summary>
+[RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
     public class PlayerController : MonoBehaviour, IPlayerController
     {
         [SerializeField] private ScriptableStats _stats;
+        [SerializeField] private RewindBullet bulletPrefab; 
+        [SerializeField] private Transform bulletSpawnPoint;
+
+        public float firePointDistance = 1f;
         private Rigidbody2D _rb;
         private CapsuleCollider2D _col;
         private FrameInput _frameInput;
         private Vector2 _frameVelocity;
         private bool _cachedQueryStartInColliders;
-        #region Interface
+        private PlayerInput input;
 
-        public Vector2 FrameInput => _frameInput.Move;
+    #region Interface
+
+    public Vector2 FrameInput => _frameInput.Move;
         public event Action<bool, float> GroundedChanged;
         public event Action Jumped;
 
@@ -34,7 +41,57 @@ using UnityEngine;
 
             _cachedQueryStartInColliders = Physics2D.queriesStartInColliders;
         }
-        private void Update()
+        private void Start()
+        {
+            input = KeyboardManager.Instance.input;
+            input.Enable();
+            input.normal.Shoot.performed += OnFire;
+        }
+        private void OnDisable()
+        {
+            input.Disable();
+            input.normal.Shoot.performed -= OnFire;  
+        }
+        private void OnFire(InputAction.CallbackContext context)
+        {
+            FireBullet();  // Gọi hàm bắn đạn khi người chơi nhấn Fire
+        }
+
+        private void FireBullet()
+        {
+            if (!BulletManager.Instance.IsAnyBulletOnScreen())
+            {
+                GameObject bullet = BulletManager.Instance.GetBullet();
+
+                bullet.transform.position = bulletSpawnPoint.position;
+                bullet.transform.rotation = bulletSpawnPoint.rotation;
+
+                RewindBullet rewindBullet = bullet.GetComponent<RewindBullet>();
+                if (rewindBullet != null)
+                {
+                    Vector2 direction = Helpers.CalculateDirection(Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()), bulletSpawnPoint.position);
+                    rewindBullet.Fire(direction);
+                }
+            }
+            else
+            {
+                Debug.Log("Đã có một viên đạn trên màn hình!");
+            }
+        }
+        private void RotateFirePoint()
+        {
+            Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+
+            // Tính toán hướng từ người chơi đến vị trí con trỏ chuột
+            Vector3 direction = (mouseWorldPosition - transform.position).normalized;
+
+
+            bulletSpawnPoint.position = transform.position + direction * firePointDistance;
+
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            bulletSpawnPoint.rotation = Quaternion.Euler(0, 0, angle);
+        }
+    private void Update()
         {
             _time += Time.deltaTime;
             GatherInput();
@@ -69,6 +126,7 @@ using UnityEngine;
             HandleGravity();
             
             ApplyMovement();
+            RotateFirePoint();
         }
 
         #region Collisions

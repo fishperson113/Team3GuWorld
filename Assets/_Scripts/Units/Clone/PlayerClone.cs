@@ -36,7 +36,6 @@ public class PlayerClone : MonoBehaviour
             {
                 objInteract = objData;
                 InitRewindData(objData.GetRewindData(), ref this.objForwardData, ref this.objBackwardData);
-                Debug.Log("co gi do");
             }
             objData.GetRewindData().Clear();
         }
