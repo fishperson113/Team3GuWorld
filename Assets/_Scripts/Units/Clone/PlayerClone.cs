@@ -30,13 +30,15 @@ public class PlayerClone : MonoBehaviour
     public void Rewind(Stack<RewindData> data, RewindableObject objData)
     {
         InitRewindData(data, ref this.forwardData, ref this.backwardData);
-        if(objData.GetRewindData().Count > 0)
+        if (objData != null)
         {
-            objInteract = objData;
-            InitRewindData(objData.GetRewindData(), ref this.objForwardData, ref this.objBackwardData);
-            Debug.Log("co gi do");
+            if (objData.GetRewindData().Count > 0)
+            {
+                objInteract = objData;
+                InitRewindData(objData.GetRewindData(), ref this.objForwardData, ref this.objBackwardData);
+            }
+            objData.GetRewindData().Clear();
         }
-        objData.GetRewindData().Clear();
     }
         
     private void Update()

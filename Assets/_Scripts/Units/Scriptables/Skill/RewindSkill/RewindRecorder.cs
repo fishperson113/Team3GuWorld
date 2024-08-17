@@ -8,7 +8,7 @@ public class RewindRecorder : MonoBehaviour
 {
     [HideInInspector] public static bool isRecorded;
     [HideInInspector] public static Stack<RewindData> recordedData;
-    [HideInInspector] public float startTime;
+    [HideInInspector] public float currentTime;
     [HideInInspector] public Vector3 cloneScale;
     public float maxTime;
     public delegate void rewindActions();

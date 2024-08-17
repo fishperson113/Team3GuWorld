@@ -1,57 +1,59 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BulletManager : Singleton<BulletManager>
 {
     [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private int poolSize = 20;
+    [SerializeField] private int poolSize;
 
-    private List<GameObject> bulletPool;
-
+    private Queue<GameObject> bulletPool;
+    private List<GameObject> activeBullets;
     protected override void Awake()
     {
         base.Awake();
-        bulletPool = new List<GameObject>();  // Initialize bulletPool
+        bulletPool = new Queue<GameObject>();
+        activeBullets = new List<GameObject>(); 
 
         for (int i = 0; i < poolSize; i++)
         {
-            GameObject bullet = Instantiate(bulletPrefab);
-            bullet.SetActive(false);
-            bulletPool.Add(bullet);
+            GameObject bullet = Instantiate(bulletPrefab); 
+            bullet.SetActive(false); 
+            bulletPool.Enqueue(bullet); 
         }
     }
 
     public GameObject GetBullet()
     {
-        foreach (GameObject bullet in bulletPool)
+        if (bulletPool.Count > 0)
         {
-            if (!bullet.activeInHierarchy)
-            {
-                bullet.SetActive(true);
-                return bullet;
-            }
+            GameObject bullet = bulletPool.Dequeue(); 
+            bullet.SetActive(true);
+            activeBullets.Add(bullet);
+            return bullet;
         }
-
-        // If all bullets are in use, create a new one
-        GameObject newBullet = Instantiate(bulletPrefab);
-        newBullet.SetActive(false);  // Ensure new bullet is initially inactive
-        bulletPool.Add(newBullet);
-        return newBullet;
+        else
+        {
+            GameObject newBullet = Instantiate(bulletPrefab);
+            newBullet.SetActive(false);
+            return newBullet;
+        }
     }
-
-    public List<GameObject> GetActiveBullets()
+    public void ReturnBullet(GameObject bullet)
     {
-        List<GameObject> activeBullets = new List<GameObject>();
-
-        foreach (GameObject bullet in bulletPool)
+        bullet.SetActive(false);
+        activeBullets.Remove(bullet);
+        bulletPool.Enqueue(bullet);
+    }
+    public bool IsAnyBulletOnScreen()
+    {
+        foreach (GameObject bullet in activeBullets)
         {
             if (bullet.activeInHierarchy)
             {
-                activeBullets.Add(bullet);
+                return true; // Có ít nhất một viên đạn đang hoạt động trên màn hình
             }
         }
-
-        return activeBullets;
+        return false;
     }
 }
