@@ -7,9 +7,11 @@ public abstract class RewindableObject:MonoBehaviour
     protected Stack<RewindData> rewindData = new Stack<RewindData>(); // stack dữ liệu rewind của object
 
     [SerializeField] protected RewindableObjEventChannel RewindDataEventChannel; //SO để gửi dữ liệu rewind của object cho clone
+
     protected virtual void Awake()
     {
         RewindRecorder.endRewind += StartRewinding;
+        Debug.Log("Đăng ký sự kiện thành công");
     }
 
     protected virtual void OnDestroy()
@@ -25,7 +27,11 @@ public abstract class RewindableObject:MonoBehaviour
     protected virtual void StartRewinding()
     {
         StopCoroutine("Record");
-        RewindDataEventChannel.Invoke(this);
+        if(rewindData.Count > 0)
+        {
+            Debug.Log("RewindDataEventChannel");
+            RewindDataEventChannel.Invoke(this);
+        } 
     }
 
     protected virtual IEnumerator Record()

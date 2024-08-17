@@ -7,10 +7,11 @@ public class PlayerCloneManager : Singleton<PlayerCloneManager>
 {
     public GameObject playerClonePrefab;
     [HideInInspector] public bool canCreateClone;
-    [HideInInspector] public RewindableObject objRewind;
+    [HideInInspector] public RewindableObject objRewind; 
     private void Start()
     {
         canCreateClone = true;
+        Debug.Log("Đăng ký sau khi object đã đăng ký");
         RewindRecorder.endRewind += createClone;
     }
     private void OnDisable()
@@ -19,14 +20,14 @@ public class PlayerCloneManager : Singleton<PlayerCloneManager>
     }
     public void ReceiveObjRewindData(RewindableObject obj)
     {
-        Debug.Log("ReceiveObjRewindData");
         objRewind = obj;
-
-    }
+        Debug.Log(obj.name);
+    } 
     private void createClone()
     {
         if (canCreateClone)
         {
+            if(objRewind==null) Debug.Log("null interact object");
             GameObject cloned = Instantiate(playerClonePrefab);
             cloned.GetComponent<PlayerClone>().Rewind(RewindRecorder.recordedData,objRewind);
             RewindRecorder.recordedData.Clear();
