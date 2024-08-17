@@ -13,7 +13,6 @@ using UnityEngine.InputSystem;
     public class PlayerController : MonoBehaviour, IPlayerController
     {
         [SerializeField] private ScriptableStats _stats;
-        [SerializeField] private RewindBullet bulletPrefab; 
         [SerializeField] private Transform bulletSpawnPoint;
 
         public float firePointDistance = 1f;
@@ -70,7 +69,8 @@ using UnityEngine.InputSystem;
                 if (rewindBullet != null)
                 {
                     Vector2 direction = Helpers.CalculateDirection(Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()), bulletSpawnPoint.position);
-                    rewindBullet.Fire(direction);
+                    rewindBullet.direction = direction;
+                    rewindBullet.Fire();
                 }
             }
             else
