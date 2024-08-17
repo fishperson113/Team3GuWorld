@@ -6,6 +6,7 @@ public class RewindBullet :RewindableObject
 
     private Rigidbody2D rb;
     [SerializeField] protected float speed;
+    public Vector2 direction;
     protected override void Awake()
     {
         base.Awake();
@@ -27,7 +28,7 @@ public class RewindBullet :RewindableObject
         rb.velocity = Vector2.zero;
     }
 
-    public void Fire(Vector2 direction)
+    public void Fire()
     {
         rb.velocity = direction.normalized * speed;  
     }
@@ -41,7 +42,9 @@ public class RewindBullet :RewindableObject
     }
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
-        Deactivate();
+        Vector2 collisionNormal = collision.GetContact(0).normal;
+        ReflectDirection(collisionNormal);
+       // Invoke(nameof(Deactivate), 2f);
     }
     protected void OnBecameInvisible()
     {
@@ -58,5 +61,10 @@ public class RewindBullet :RewindableObject
     protected override IEnumerator Record()
     {
         yield return base.Record();
-    } 
+    }
+    public void ReflectDirection(Vector2 inNormal)
+    {
+        direction = Vector2.Reflect(direction, inNormal).normalized;
+        rb.velocity = direction * speed;
+    }
 }
