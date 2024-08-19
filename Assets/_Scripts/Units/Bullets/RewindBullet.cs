@@ -45,9 +45,12 @@ public class RewindBullet :RewindableObject
     }
     protected override void StartRewinding()
     {
-        rewindPosition = transform.position;
-        base.StartRewinding();
-        StartCoroutine(CheckPositionCoroutine());
+        if(gameObject.activeInHierarchy)
+        {
+            rewindPosition = transform.position;
+            base.StartRewinding();
+            StartCoroutine(CheckPositionCoroutine());
+        }    
     }
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
