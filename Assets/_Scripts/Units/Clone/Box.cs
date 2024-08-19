@@ -10,7 +10,6 @@ public class Box : RewindableObject
     {
         base.Awake();
         rb= GetComponent<Rigidbody2D>();
-        rb.isKinematic= true;
     }
     protected override void OnDestroy()
     {
@@ -23,7 +22,7 @@ public class Box : RewindableObject
     protected override void StartRewinding()
     {
         rb.velocity = Vector2.zero;
-        rb.angularVelocity = 0f;
+        rb.angularVelocity = 0;
         base.StartRewinding();
     }
     protected override IEnumerator Record()
@@ -32,7 +31,6 @@ public class Box : RewindableObject
     }
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
-        rb.isKinematic = false;
         base.OnCollisionEnter2D(collision);
     }
 }

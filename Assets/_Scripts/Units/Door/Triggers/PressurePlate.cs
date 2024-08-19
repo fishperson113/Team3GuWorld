@@ -6,15 +6,22 @@ public class PressurePlate : MonoBehaviour
 {
     public System.Action<bool> onPlateTriggered; // Sự kiện để thông báo khi plate bị nhấn hoặc thả
 
+    private bool isPressed = false;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Gọi sự kiện khi plate bị nhấn
-        onPlateTriggered?.Invoke(true);
+        if (!isPressed) // Kiểm tra xem plate đã bị nhấn chưa
+        {
+            isPressed = true;
+            onPlateTriggered?.Invoke(true); // Gọi sự kiện khi plate bị nhấn
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        // Gọi sự kiện khi plate bị thả ra
-        onPlateTriggered?.Invoke(false);
+        if (isPressed) // Kiểm tra xem plate đang bị nhấn
+        {
+            isPressed = false;
+            onPlateTriggered?.Invoke(false); // Gọi sự kiện khi plate bị thả ra
+        }
     }
 }
