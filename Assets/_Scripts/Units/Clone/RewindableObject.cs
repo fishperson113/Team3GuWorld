@@ -11,7 +11,6 @@ public abstract class RewindableObject:MonoBehaviour
     protected virtual void Awake()
     {
         RewindRecorder.endRewind += StartRewinding;
-        Debug.Log("Đăng ký sự kiện thành công");
     }
 
     protected virtual void OnDestroy()

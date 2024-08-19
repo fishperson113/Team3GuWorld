@@ -11,7 +11,6 @@ public class PlayerCloneManager : Singleton<PlayerCloneManager>
     private void Start()
     {
         canCreateClone = true;
-        Debug.Log("Đăng ký sau khi object đã đăng ký");
         RewindRecorder.endRewind += createClone;
     }
     private void OnDisable()
@@ -27,7 +26,6 @@ public class PlayerCloneManager : Singleton<PlayerCloneManager>
     {
         if (canCreateClone)
         {
-            if(objRewind==null) Debug.Log("null interact object");
             GameObject cloned = Instantiate(playerClonePrefab);
             cloned.GetComponent<PlayerClone>().Rewind(RewindRecorder.recordedData,objRewind);
             RewindRecorder.recordedData.Clear();

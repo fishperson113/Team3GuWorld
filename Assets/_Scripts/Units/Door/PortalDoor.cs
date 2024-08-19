@@ -10,7 +10,7 @@ public class PortalDoor : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (linkedPortal != null && canTeleport && collision.CompareTag("Player"))
+        if (linkedPortal != null && canTeleport)
         {
             Teleport(collision.transform);
         }
@@ -18,16 +18,12 @@ public class PortalDoor : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
-        {
-            canTeleport = true;
-        }
+        canTeleport = true;
     }
     private void Teleport(Transform player)
     {
         linkedPortal.canTeleport = false;
 
-        // Dịch chuyển người chơi đến vị trí của cổng liên kết
         player.position = linkedPortal.transform.position;
     }
 }

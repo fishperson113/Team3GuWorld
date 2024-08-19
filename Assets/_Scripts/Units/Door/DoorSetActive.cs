@@ -32,9 +32,12 @@ public class DoorSetActive : MonoBehaviour, IDoor {
     }
 
     public void CloseDoor() {
-        isOpen = false;
-        StopAllCoroutines();
-        StartCoroutine(MoveDoor(closedPosition));
+        if(isOpen)
+        {
+            isOpen = false;
+            StopAllCoroutines();
+            StartCoroutine(MoveDoor(closedPosition));
+        }    
     }
 
     public void ToggleDoor() {
