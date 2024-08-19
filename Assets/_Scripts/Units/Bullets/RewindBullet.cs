@@ -84,7 +84,7 @@ public class RewindBullet :RewindableObject
                 yield break; 
             }
 
-            if (transform.position == rewindPosition)
+            if (transform.position == activePosition)
             {
                 Deactivate();
                 yield break;
