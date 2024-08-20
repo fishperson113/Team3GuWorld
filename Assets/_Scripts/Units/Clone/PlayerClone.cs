@@ -11,9 +11,10 @@ public class PlayerClone : MonoBehaviour
     private Stack<RewindData> backwardData;
     private Stack<RewindData> forwardData;
 
+    private RewindableObject objInteract;
     private Stack<RewindData> objBackwardData;
     private Stack<RewindData> objForwardData;
-    [SerializeField]private RewindableObject objInteract;
+    private Rigidbody2D objRb;
 
     private Material mat;
 
@@ -21,6 +22,7 @@ public class PlayerClone : MonoBehaviour
     private void Awake()
     {
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        
     }
     private void Start()
     {
@@ -35,6 +37,7 @@ public class PlayerClone : MonoBehaviour
             if (objData.GetRewindData().Count > 0)
             {
                 objInteract = objData;
+                objRb = objInteract.gameObject.GetComponent<Rigidbody2D>();
                 InitRewindData(objData.GetRewindData(), ref this.objForwardData, ref this.objBackwardData);
             }
             objData.GetRewindData().Clear();
@@ -55,7 +58,13 @@ public class PlayerClone : MonoBehaviour
                 backwardData.Clear();
 
                 if(objInteract !=null)
+                {
+                    if(objInteract.gameObject.CompareTag("Bullet"))
+                    {
+                        DeleteBullet();
+                    }    
                     objBackwardData.Clear();
+                }    
 
                 return;
             }
@@ -89,8 +98,14 @@ public class PlayerClone : MonoBehaviour
             {
                 DeletedClone();
                 forwardData.Clear();
-                if(objInteract!=null)
+                if (objInteract != null)
+                {
+                    if (objInteract.gameObject.CompareTag("Bullet"))
+                    {
+                        DeleteBullet();
+                    }
                     objForwardData.Clear();
+                }
             }
 
         }
@@ -123,6 +138,16 @@ public class PlayerClone : MonoBehaviour
         {
             StartCoroutine(Disolve());
         }
+    }
+    private void DeleteBullet()
+    {
+        objRb.velocity = Vector2.zero;
+        objRb.angularVelocity = 0;
+        objRb.isKinematic = true;
+        objInteract.gameObject.GetComponent<RewindBullet>().Deactivate();
+        objRb.isKinematic = false;
+
+
     }
     private void InitRewindData(Stack<RewindData> data, ref Stack<RewindData> forwardData, ref Stack<RewindData> backwardData)
     {

@@ -8,8 +8,6 @@ public class RewindBullet :RewindableObject
     [SerializeField] protected float speed;
     public Vector2 direction;
 
-    protected Vector3 activePosition;
-    protected Vector3 rewindPosition;
     protected override void Awake()
     {
         base.Awake();
@@ -18,7 +16,7 @@ public class RewindBullet :RewindableObject
     }
     protected void OnEnable()
     {
-        activePosition= transform.position;
+        
         if (RewindRecorder.isRecorded)
         {
             StartRecording();
@@ -39,7 +37,7 @@ public class RewindBullet :RewindableObject
     {
         rb.velocity = direction.normalized * speed;  
     }
-    protected void Deactivate()
+    public void Deactivate()
     {
         BulletManager.Instance.ReturnBullet(gameObject);
     }
@@ -47,9 +45,7 @@ public class RewindBullet :RewindableObject
     {
         if(gameObject.activeInHierarchy)
         {
-            rewindPosition = transform.position;
             base.StartRewinding();
-            StartCoroutine(CheckPositionCoroutine());
         }    
     }
     protected override void OnCollisionEnter2D(Collision2D collision)
@@ -77,22 +73,5 @@ public class RewindBullet :RewindableObject
     {
         direction = Vector2.Reflect(direction, inNormal).normalized;
         rb.velocity = direction * speed;
-    }
-    private IEnumerator CheckPositionCoroutine()
-    {
-        while (true)
-        {
-            if (!gameObject.activeInHierarchy)
-            {
-                yield break; 
-            }
-
-            if (transform.position == activePosition)
-            {
-                Deactivate();
-                yield break;
-            }
-            yield return null;
-        }
     }
 }
