@@ -38,7 +38,10 @@ public abstract class RewindableObject:MonoBehaviour
             rb.velocity = Vector2.zero;
             rb.angularVelocity = 0;
             rb.isKinematic = true;
+<<<<<<< HEAD
             Debug.Log("RewindDataEventChannel");
+=======
+>>>>>>> 8038100 (fix: RewindableObj recording condition)
             RewindDataEventChannel.Invoke(this);
         } 
     }
@@ -60,6 +63,10 @@ public abstract class RewindableObject:MonoBehaviour
     }
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
+<<<<<<< HEAD
+=======
+        rb.isKinematic = false;
+>>>>>>> 8038100 (fix: RewindableObj recording condition)
         if (collision.gameObject.CompareTag("Player") && RewindRecorder.isRecorded&& activeCoroutine == null)
         {
             StartRecording();
