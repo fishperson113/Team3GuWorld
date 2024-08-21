@@ -145,9 +145,6 @@ public class PlayerClone : MonoBehaviour
         objRb.angularVelocity = 0;
         objRb.isKinematic = true;
         objInteract.gameObject.GetComponent<RewindBullet>().Deactivate();
-        objRb.isKinematic = false;
-
-
     }
     private void InitRewindData(Stack<RewindData> data, ref Stack<RewindData> forwardData, ref Stack<RewindData> backwardData)
     {
