@@ -4,14 +4,12 @@ using UnityEngine;
 public class RewindBullet :RewindableObject
 {
 
-    private Rigidbody2D rb;
     [SerializeField] protected float speed;
     public Vector2 direction;
 
     protected override void Awake()
     {
         base.Awake();
-        rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = 0;    
     }
     protected void OnEnable()

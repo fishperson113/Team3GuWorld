@@ -1934,6 +1934,7 @@ GameObject:
   - component: {fileID: 2010382391}
   - component: {fileID: 2010382395}
   - component: {fileID: 2010382394}
+  - component: {fileID: 2010382393}
   - component: {fileID: 2010382392}
   m_Layer: 0
   m_Name: Door
@@ -1971,6 +1972,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 3
   openYPosition: 3
+--- !u!114 &2010382393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2010382390}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aa48d0a4262f4d43ab812e243a07a8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!61 &2010382394
 BoxCollider2D:
   m_ObjectHideFlags: 0
