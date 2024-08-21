@@ -5,7 +5,7 @@ using UnityEngine;
 public class StarTriggerManager : MonoBehaviour
 {
     [SerializeField] private GameObject doorA;  // Cửa cần quản lý
-    [SerializeField] private List<StarTrigger> starTriggers; // Danh sách các pressure plates
+    [SerializeField] private List<StarTrigger> starTriggers;
 
     private IDoor door;
     private int StarShot = 1;
@@ -29,20 +29,31 @@ public class StarTriggerManager : MonoBehaviour
     }
     private void InitPuzzle()
     {
-        for (int i=0;i<starTriggers.Count;i++)
+        if(!RewindRecorder.isRecorded) {
+            starTriggers[0].ResetTrigger(); //isShot=false
+            starTriggers[0].SetActive(true);
+            return; 
+        }
+        else
         {
-            if (i>0)
+            StartCoroutine(RewindCheck());
+            for (int i = 0; i < starTriggers.Count; i++)
             {
-                starTriggers[i].gameObject.SetActive(true);
-                StartCoroutine(RewindCheck());
-            }    
+                starTriggers[i].ResetTrigger(); //isShot=false
+            }
+            starTriggers[StarShot].SetActive(true);
         }
     }
     private void HandleStarTrigger()
     {
         StarShot++;
-        if (StarShot == starTriggers.Count)
+        if (StarShot < starTriggers.Count)
         {
+            starTriggers[StarShot].SetActive(true);
+        }
+        else
+        {
+            // Nếu tất cả ngôi sao đã bị bắn, mở cửa
             door.OpenDoor();
         }
     }
@@ -50,11 +61,12 @@ public class StarTriggerManager : MonoBehaviour
     {
         while(true)
         {
-            if(!RewindRecorder.isRecorded)
+            if(!BulletManager.Instance.IsAnyBulletOnScreen())
             {
+                StarShot = 1;
                 for (int i = 0; i < starTriggers.Count; i++)
                 {
-                    if (i == 0)
+                    if (i == 0 && StarShot != starTriggers.Count)
                     {
                         starTriggers[i].gameObject.SetActive(true);
                     }

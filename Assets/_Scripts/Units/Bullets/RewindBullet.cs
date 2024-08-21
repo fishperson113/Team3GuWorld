@@ -40,6 +40,7 @@ public class RewindBullet :RewindableObject
     public void Deactivate()
     {
         BulletManager.Instance.ReturnBullet(gameObject);
+        rb.isKinematic = false;
     }
     protected override void StartRewinding()
     {

@@ -7,13 +7,22 @@ public class StarTrigger : MonoBehaviour
     public System.Action onStarTriggeredShot;
     
     private bool isShot = false;
+    public void ResetTrigger()
+    {
+        isShot = false;
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!isShot&& collision.CompareTag("Bullet") && RewindRecorder.isRecorded) // Kiểm tra xem star đã bị bắn chưa
+        if (!isShot&& collision.CompareTag("Bullet"))
         {
+            Debug.Log("Shot");
             isShot = true;
-            onStarTriggeredShot?.Invoke(); // Gọi sự kiện khi star bắn
-            gameObject.SetActive(false);
+            SetActive(false);
+            onStarTriggeredShot?.Invoke(); 
         }
     }
+    public void SetActive(bool state)
+    {
+        gameObject.SetActive(state);
+    }    
 }
