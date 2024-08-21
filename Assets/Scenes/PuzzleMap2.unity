@@ -236,7 +236,10 @@ Transform:
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> e2c30ed (feat: add prefab)
 --- !u!114 &461585388 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6830476894863812443, guid: acebd2476e7bc0040818e8be1a69bd25, type: 3}
@@ -259,7 +262,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fa5c91b669604044b521d4b75b8cc29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
 >>>>>>> 5e8d5ba (chore: resolve conflict)
+=======
+>>>>>>> e2c30ed (feat: add prefab)
 --- !u!1 &699258331
 GameObject:
   m_ObjectHideFlags: 0
@@ -675,13 +681,19 @@ Transform:
   m_PrefabInstance: {fileID: 1748231579}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> e2c30ed (feat: add prefab)
 --- !u!1 &2010382390 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6842459437448721695, guid: acebd2476e7bc0040818e8be1a69bd25, type: 3}
   m_PrefabInstance: {fileID: 4092956691114043095}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 >>>>>>> 5e8d5ba (chore: resolve conflict)
+=======
+>>>>>>> e2c30ed (feat: add prefab)
 --- !u!1 &2081978964
 GameObject:
   m_ObjectHideFlags: 0
@@ -775,7 +787,10 @@ Camera:
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> e2c30ed (feat: add prefab)
 --- !u!1001 &4092956691114043095
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5773,15 +5788,22 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: acebd2476e7bc0040818e8be1a69bd25, type: 3}
+<<<<<<< HEAD
 >>>>>>> 5e8d5ba (chore: resolve conflict)
+=======
+>>>>>>> e2c30ed (feat: add prefab)
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   - {fileID: 4092956691114043095}
 >>>>>>> 5e8d5ba (chore: resolve conflict)
+=======
+  - {fileID: 4092956691114043095}
+>>>>>>> e2c30ed (feat: add prefab)
   - {fileID: 303320125}
   - {fileID: 1265311366}
   - {fileID: 699258332}
