@@ -8,9 +8,13 @@ public abstract class RewindableObject:MonoBehaviour
 
     [SerializeField] protected RewindableObjEventChannel RewindDataEventChannel; //SO để gửi dữ liệu rewind của object cho clone
 
+    protected Rigidbody2D rb;
+
+    protected Coroutine activeCoroutine;
     protected virtual void Awake()
     {
         RewindRecorder.endRewind += StartRewinding;
+        rb = GetComponent<Rigidbody2D>();
     }
 
     protected virtual void OnDestroy()
@@ -20,14 +24,20 @@ public abstract class RewindableObject:MonoBehaviour
 
     protected virtual void StartRecording()
     {
-        StartCoroutine("Record", Record());
+        activeCoroutine = StartCoroutine("Record", Record());
     }
 
     protected virtual void StartRewinding()
     {
-        StopCoroutine("Record");
-        if(rewindData.Count > 0)
+        if (activeCoroutine == null) return;
+        
+        StopCoroutine(activeCoroutine);
+        activeCoroutine = null;
+        if (rewindData.Count > 0)
         {
+            rb.velocity = Vector2.zero;
+            rb.angularVelocity = 0;
+            rb.isKinematic = true;
             Debug.Log("RewindDataEventChannel");
             RewindDataEventChannel.Invoke(this);
         } 
@@ -35,6 +45,7 @@ public abstract class RewindableObject:MonoBehaviour
 
     protected virtual IEnumerator Record()
     {
+        rb.isKinematic = false;
         while (RewindRecorder.isRecorded)
         {
             RewindData data = new RewindData
@@ -49,7 +60,7 @@ public abstract class RewindableObject:MonoBehaviour
     }
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && RewindRecorder.isRecorded)
+        if (collision.gameObject.CompareTag("Player") && RewindRecorder.isRecorded&& activeCoroutine == null)
         {
             StartRecording();
         }
