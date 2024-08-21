@@ -44,7 +44,6 @@ public class DoorTriggerPressurePlate_Done : MonoBehaviour {
             activePlates--;
         }
         
-        Debug.Log("Active Plates: " + activePlates);
         // Kiểm tra xem tất cả các plates đã bị nhấn chưa
         if (activePlates == pressurePlates.Count)
         {

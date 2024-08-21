@@ -5,11 +5,10 @@ using System.Linq;
 
 public class Box : RewindableObject
 {
-    private Rigidbody2D rb;
     protected override void Awake()
     {
         base.Awake();
-        rb= GetComponent<Rigidbody2D>();
+ 
     }
     protected override void OnDestroy()
     {
@@ -21,8 +20,6 @@ public class Box : RewindableObject
     }
     protected override void StartRewinding()
     {
-        rb.velocity = Vector2.zero;
-        rb.angularVelocity = 0;
         base.StartRewinding();
     }
     protected override IEnumerator Record()

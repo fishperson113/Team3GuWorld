@@ -20,7 +20,6 @@ public class PlayerCloneManager : Singleton<PlayerCloneManager>
     public void ReceiveObjRewindData(RewindableObject obj)
     {
         objRewind = obj;
-        Debug.Log(obj.name);
     } 
     private void createClone()
     {
