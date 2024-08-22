@@ -71,6 +71,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Reset"",
+                    ""type"": ""Button"",
+                    ""id"": ""9c8ef43d-936a-48bf-bd58-2967d5b5b30d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -150,6 +159,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""154f6220-91d6-4f7c-81b4-12ca3cb87e86"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Reset"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -224,6 +244,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_normal_Rewind = m_normal.FindAction("Rewind", throwIfNotFound: true);
         m_normal_Interact = m_normal.FindAction("Interact", throwIfNotFound: true);
         m_normal_Shoot = m_normal.FindAction("Shoot", throwIfNotFound: true);
+        m_normal_Reset = m_normal.FindAction("Reset", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -290,6 +311,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_normal_Rewind;
     private readonly InputAction m_normal_Interact;
     private readonly InputAction m_normal_Shoot;
+    private readonly InputAction m_normal_Reset;
     public struct NormalActions
     {
         private @PlayerInput m_Wrapper;
@@ -299,6 +321,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @Rewind => m_Wrapper.m_normal_Rewind;
         public InputAction @Interact => m_Wrapper.m_normal_Interact;
         public InputAction @Shoot => m_Wrapper.m_normal_Shoot;
+        public InputAction @Reset => m_Wrapper.m_normal_Reset;
         public InputActionMap Get() { return m_Wrapper.m_normal; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -323,6 +346,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Shoot.started += instance.OnShoot;
             @Shoot.performed += instance.OnShoot;
             @Shoot.canceled += instance.OnShoot;
+            @Reset.started += instance.OnReset;
+            @Reset.performed += instance.OnReset;
+            @Reset.canceled += instance.OnReset;
         }
 
         private void UnregisterCallbacks(INormalActions instance)
@@ -342,6 +368,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Shoot.started -= instance.OnShoot;
             @Shoot.performed -= instance.OnShoot;
             @Shoot.canceled -= instance.OnShoot;
+            @Reset.started -= instance.OnReset;
+            @Reset.performed -= instance.OnReset;
+            @Reset.canceled -= instance.OnReset;
         }
 
         public void RemoveCallbacks(INormalActions instance)
@@ -411,5 +440,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnRewind(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
+        void OnReset(InputAction.CallbackContext context);
     }
 }

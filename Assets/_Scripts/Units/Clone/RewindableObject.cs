@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class RewindableObject:MonoBehaviour
+public abstract class RewindableObject:MonoBehaviour,ISavable
 {
     protected Stack<RewindData> rewindData = new Stack<RewindData>(); // stack dữ liệu rewind của object
 
@@ -71,4 +71,25 @@ public abstract class RewindableObject:MonoBehaviour
     {
         return rewindData;
     }
+    public ObjectData GetObjectData()
+    {
+        return new ObjectData(
+            gameObject.name,
+            transform.position,
+            transform.rotation,
+            gameObject.activeSelf
+        );
+    }
+
+    public void SetObjectData(ObjectData data)
+    {
+        transform.position = new Vector3(data.position[0], data.position[1], data.position[2]);
+        transform.rotation = Quaternion.Euler(data.rotation[0], data.rotation[1], data.rotation[2]);
+        gameObject.SetActive(data.isActive);
+    }
+}
+public interface ISavable
+{
+    ObjectData GetObjectData();
+    void SetObjectData(ObjectData data);
 }

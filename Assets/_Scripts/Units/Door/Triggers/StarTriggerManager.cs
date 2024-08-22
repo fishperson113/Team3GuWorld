@@ -61,7 +61,7 @@ public class StarTriggerManager : MonoBehaviour
     {
         while(true)
         {
-            if(!BulletManager.Instance.IsAnyBulletOnScreen())
+            if(!BulletManager.Instance.IsAnyBulletOnScreen()&& StarShot<starTriggers.Count)
             {
                 StarShot = 1;
                 for (int i = 0; i < starTriggers.Count; i++)
