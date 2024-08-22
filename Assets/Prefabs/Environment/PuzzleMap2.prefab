@@ -35,9 +35,13 @@ Transform:
   - {fileID: 6969598925119428107}
   - {fileID: 8087402837217062234}
 <<<<<<< HEAD
+<<<<<<< HEAD
   - {fileID: 1783405525062411057}
 =======
 >>>>>>> 5af2c3d (chore: resolve conflict)
+=======
+  - {fileID: 1783405525062411057}
+>>>>>>> 92ad398b21d73bd5b2c57204ee6d48513cc99f8d
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1843004016459955542
@@ -2037,6 +2041,9 @@ CompositeCollider2D:
   m_UseDelaunayMesh: 0
   m_CompositeGameObject: {fileID: 3802921990730940249}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 92ad398b21d73bd5b2c57204ee6d48513cc99f8d
 --- !u!1 &4164128632110775303
 GameObject:
   m_ObjectHideFlags: 0
@@ -2085,8 +2092,11 @@ MonoBehaviour:
   pressurePlates:
   - {fileID: 6830476894863812443}
   - {fileID: 8624242929606314494}
+<<<<<<< HEAD
 =======
 >>>>>>> 5af2c3d (chore: resolve conflict)
+=======
+>>>>>>> 92ad398b21d73bd5b2c57204ee6d48513cc99f8d
 --- !u!1 &6842459437448721695
 GameObject:
   m_ObjectHideFlags: 0
