@@ -1,6 +1,16 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+<<<<<<<< HEAD:Assets/Prefabs/Environment/PuzzleMap2.prefab.meta
 guid: acebd2476e7bc0040818e8be1a69bd25
 PrefabImporter:
+========
+guid: 6644f2a89bf84c9499aeff584e276637
+DefaultImporter:
+>>>>>>>> 30a8e21c8cf27fcef6ad3fe5b85333caa79e1c3c:Assets/_Scripts/MapDesign Aug 00-00am.unity.meta
+=======
+guid: 42693ce854009bc438d8329d47700523
+PrefabImporter:
+>>>>>>> 30a8e21c8cf27fcef6ad3fe5b85333caa79e1c3c
   externalObjects: {}
   userData: 
   assetBundleName: 
