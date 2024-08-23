@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Linq;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
 
 public class Checkpoint : MonoBehaviour
 {
@@ -18,9 +19,10 @@ public class Checkpoint : MonoBehaviour
     {
         input.Disable();
     }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player")&& player==null)
+        if (other.CompareTag("Player") && player == null)
         {
             player = other.gameObject;
             SaveGame();
@@ -28,19 +30,23 @@ public class Checkpoint : MonoBehaviour
         }
     }
 
-    // Xử lý load lại puzzle khi nhấn phím R
     private void OnReloadPuzzle(InputAction.CallbackContext context)
     {
         LoadGame();
     }
+
     public void SaveGame()
     {
         GameData gameData = new GameData();
-        
-        gameData.playerPosition = new float[] { player.transform.position.x, player.transform.position.y, player.transform.position.z };
 
-        
+        if (player != null)
+        {
+            gameData.playerPosition = new float[] { player.transform.position.x, player.transform.position.y, player.transform.position.z };
+        }
+
         ISavable[] savableObjects = FindObjectsOfType<MonoBehaviour>().OfType<ISavable>().ToArray();
+
+        gameData.objectsData.Clear(); // Clear existing data to prevent duplicates
 
         foreach (ISavable savable in savableObjects)
         {
@@ -48,30 +54,48 @@ public class Checkpoint : MonoBehaviour
             gameData.objectsData.Add(objectData);
         }
 
-        
-        SaveLoadManager.Instance.SaveGame(gameData);
+        SaveSystem.SaveGame(gameData); // Use SaveSystem to save game data
     }
 
     public void LoadGame()
     {
-        GameData gameData = SaveLoadManager.Instance.LoadGame();
+        GameData gameData = SaveSystem.LoadGame(); // Use SaveSystem to load game data
 
-        if (gameData != null &&player!= null)
+        if (gameData != null)
         {
-            player.transform.position = new Vector3(gameData.playerPosition[0], gameData.playerPosition[1], gameData.playerPosition[2]);
-            
-            
+            if (player != null)
+            {
+                player.transform.position = new Vector3(gameData.playerPosition[0], gameData.playerPosition[1], gameData.playerPosition[2]);
+            }
+
             ISavable[] savableObjects = FindObjectsOfType<MonoBehaviour>().OfType<ISavable>().ToArray();
+
+            // Create a dictionary to map IDs to savable objects
+            var savableDict = new Dictionary<string, ISavable>();
+
+            foreach (var savable in savableObjects)
+            {
+                var objectID = savable.GetObjectData().objectID;
+
+                if (!savableDict.ContainsKey(objectID))
+                {
+                    savableDict[objectID] = savable;
+                }
+                else
+                {
+                    Debug.LogWarning($"Duplicate objectID found: {objectID}. Only one instance will be used.");
+                }
+            }
 
             foreach (ObjectData objData in gameData.objectsData)
             {
-                foreach (ISavable savable in savableObjects)
+                if (savableDict.TryGetValue(objData.objectID, out ISavable savable))
                 {
-                    if (savable.GetObjectData().objectID == objData.objectID)
-                    {
-                        savable.SetObjectData(objData);
-                        break;
-                    }
+                    savable.SetObjectData(objData);
+                }
+                else
+                {
+                    Debug.LogWarning($"Object with ID {objData.objectID} not found for loading.");
                 }
             }
         }

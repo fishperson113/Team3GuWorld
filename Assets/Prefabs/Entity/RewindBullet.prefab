@@ -162,5 +162,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RewindDataEventChannel: {fileID: 11400000, guid: c09e6e7d0a66d1748bbb056d483de07c, type: 2}
-  speed: 4
+  speed: 10
   direction: {x: 0, y: 0}

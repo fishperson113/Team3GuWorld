@@ -1,6 +1,11 @@
 fileFormatVersion: 2
-guid: a4e856a2098737d48b9fdcf8fe5c7965
+<<<<<<<< HEAD:Assets/Prefabs/Managers/SaveLoadManager.prefab.meta
+guid: 823163afdf99dc7449ba817c17b0c73d
 PrefabImporter:
+========
+guid: 74db668ef5a889b49b142531a6eabd04
+DefaultImporter:
+>>>>>>>> 30a8e21c8cf27fcef6ad3fe5b85333caa79e1c3c:Assets/_Scripts/MapDesign Aug 00-18am.unity.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
