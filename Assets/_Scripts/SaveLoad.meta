@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: c4a0e26c08544204da85f99e8aed38db
+<<<<<<<< HEAD:Assets/_Scripts/SaveLoad.meta
+guid: 9be0a1fbc8c80e3418bacac3df0dfecf
+========
+guid: e627e2e548f81474fa69f48fee7077e5
+>>>>>>>> 30a8e21c8cf27fcef6ad3fe5b85333caa79e1c3c:Assets/UI/UI Assets/Graphics/Platform tile pack/ArtWork/TileRules.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
