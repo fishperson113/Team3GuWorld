@@ -8,7 +8,7 @@ public class Box : RewindableObject
     protected override void Awake()
     {
         base.Awake();
- 
+        rb.isKinematic = true;
     }
     protected override void OnDestroy()
     {

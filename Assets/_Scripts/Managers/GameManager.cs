@@ -7,21 +7,40 @@ using System.Linq;
 
 public enum GameState
 {
-    Menu,
     Playing,
     Completed
 }
 
-public class GameManager : PersistentSingleton<GameManager>
+public class GameManager : StaticInstance<GameManager>
 {
     public GameState CurrentState { get; private set; }
     private GameData currentGameData;
-
-    private void Start()
+    [SerializeField]
+    private GameObject playerPrefab;
+    public GameObject winScreenUI;
+    protected override void Awake()
     {
-        CurrentState = GameState.Menu;
+        base.Awake();
+        StartGame();
+        FinishedPoint.endGame += WinGame;
+        winScreenUI.SetActive(false);
     }
-
+    private void OnDisable()
+    {
+        FinishedPoint.endGame -= WinGame;
+    }
+    private void WinGame()
+    {
+        if (winScreenUI != null)
+        {
+            winScreenUI.SetActive(true);
+            CurrentState = GameState.Completed;
+        }
+        else
+        {
+            Debug.LogError("winScreenUI is missing or destroyed.");
+        }
+    }
     public void StartGame()
     {
         LoadGame();
@@ -35,6 +54,7 @@ public class GameManager : PersistentSingleton<GameManager>
         if (currentGameData != null)
         {
             ApplyGameData(currentGameData);
+            Debug.Log("Game loaded successfully.");
         }
         else
         {

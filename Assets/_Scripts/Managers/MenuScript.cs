@@ -7,7 +7,6 @@ public class MenuScript : MonoBehaviour
 {
     public static bool GameIsPaused = false;
     public GameObject pauseMenuUI;
-
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -41,7 +40,6 @@ public class MenuScript : MonoBehaviour
     public void PlayGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        GameManager.Instance.StartGame();
     }    
 
     public void QuitGame()

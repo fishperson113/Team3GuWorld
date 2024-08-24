@@ -4,6 +4,7 @@ using UnityEngine;
 
 public static class SaveSystem
 {
+    public static string GetSavePath() => Application.persistentDataPath + "/game.save";
     public static void SaveGame(GameData gameData)
     {
         BinaryFormatter formatter = new BinaryFormatter();

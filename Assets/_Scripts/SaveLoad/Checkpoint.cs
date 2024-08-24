@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
-
+using System.IO;
 public class Checkpoint : MonoBehaviour
 {
     private GameObject player;
@@ -53,13 +53,14 @@ public class Checkpoint : MonoBehaviour
             ObjectData objectData = savable.GetObjectData();
             gameData.objectsData.Add(objectData);
         }
+        SaveSystem.DeleteSave();
 
-        SaveSystem.SaveGame(gameData); // Use SaveSystem to save game data
+        SaveSystem.SaveGame(gameData); 
     }
 
     public void LoadGame()
     {
-        GameData gameData = SaveSystem.LoadGame(); // Use SaveSystem to load game data
+        GameData gameData = SaveSystem.LoadGame(); 
 
         if (gameData != null)
         {

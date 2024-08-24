@@ -22,8 +22,14 @@ public class PortalDoor : MonoBehaviour
     }
     private void Teleport(Transform player)
     {
-        linkedPortal.canTeleport = false;
+        canTeleport = false;
 
+        linkedPortal.canTeleport = false;
         player.position = linkedPortal.transform.position;
+        var rb=player.gameObject.GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.velocity = -rb.velocity;
+        }
     }
 }

@@ -12,7 +12,7 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
+  companyName: "D\u01B0\u01A1ng v\xE0 nh\u1EEFng ng\u01B0\u1EDDi b\u1EA1n"
   productName: GuWorld
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
